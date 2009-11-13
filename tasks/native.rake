@@ -1,3 +1,4 @@
+begin
 # use rake-compiler for building the extension
 require 'rake/extensiontask'
 
@@ -21,6 +22,8 @@ Rake::ExtensionTask.new('sqlite3_api', HOE.spec) do |ext|
     ext.cross_config_options << "--with-sqlite3-dir=#{sqlite3_lib}"
   end
 end
+rescue Exception => e
+end
 
 # C wrapper depends on swig file to be generated
 file 'ext/sqlite3_api/sqlite3_api_wrap.c' => ['ext/sqlite3_api/sqlite3_api.i'] do |t|
@@ -31,5 +34,5 @@ file 'ext/sqlite3_api/sqlite3_api_wrap.c' => ['ext/sqlite3_api/sqlite3_api.i'] d
   end
 end
 
-# ensure things are compiled prior testing
-task :test => [:compile]
+## ensure things are compiled prior testing
+# task :test => [:compile]

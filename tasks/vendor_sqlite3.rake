@@ -1,3 +1,5 @@
+begin
+
 require 'rake/clean'
 require 'rake/extensioncompiler'
 
@@ -101,4 +103,7 @@ if RUBY_PLATFORM =~ /mingw|mswin/ then
   Rake::Task['compile'].prerequisites.unshift 'vendor:sqlite3'
 else
   Rake::Task['cross'].prerequisites.unshift 'vendor:sqlite3'
+end
+
+rescue Exception => e
 end
